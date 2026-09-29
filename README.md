@@ -2,6 +2,21 @@
 
 [中文](README_ZH.md)
 
+## DS4.1 Flash V8 Docker image (PP2 / PD separation)
+
+The reproducibility image is published at `ghcr.io/soulmate-halo/heterogeneous-gpu-pd-lab/ds41-flash-v8:latest`. It contains the frozen V8 cross-engine patches, final DSpark delta, runtime environment, and SHA256 evidence; it deliberately does not redistribute the 510 GB official weights or private role images.
+
+- **P stage:** two RTX 6000D cards in vLLM TP2 (RTX 5500 Pro or RTX 6000 Pro are documented substitutes when validated).
+- **D stage:** four DGX Spark/GB10 nodes in SGLang TP4/EP4, connected by NIXL; the overall design is PP2 with PD separation.
+
+[Docker configuration and apply procedure](ds41-flash-v8/README.md) ? [Dockerfile](ds41-flash-v8/Dockerfile) ? [Compose template](ds41-flash-v8/compose.yml)
+
+```bash
+docker pull ghcr.io/soulmate-halo/heterogeneous-gpu-pd-lab/ds41-flash-v8:latest
+docker run --rm ghcr.io/soulmate-halo/heterogeneous-gpu-pd-lab/ds41-flash-v8:latest show-config
+```
+
+
 ## Latest result · 2026-09-20 · DS4.1 Flash · V8 deployment: 16000+ tok/s Prefill, 442.02 tok/s aggregate Decode at C32
 
 ### DeepSeek-V4.1-Flash (DS4.1 Flash) · V8: 16000+ tok/s Prefill across three concurrency levels, 442.02 tok/s aggregate Decode at C32

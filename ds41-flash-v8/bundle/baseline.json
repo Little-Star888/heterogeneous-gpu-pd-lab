@@ -1,0 +1,318 @@
+{
+  "version": "V8",
+  "name": "ds4.1flash6卡（4spark+2张6000Dpro）V8版本",
+  "named_at": "2026-09-20T09:51:51.138373+08:00",
+  "entry_document": "ds4.1flash6gpu-v8.md",
+  "status": "accepted_local_baseline_snapshot",
+  "runtime_evidence_date": "2026-09-20",
+  "runtime_rechecked_during_naming": false,
+  "architecture": {
+    "P": {
+      "engine": "vLLM",
+      "layers": 21,
+      "tp": 2,
+      "hardware": "2x RTX 6000Dpro"
+    },
+    "D": {
+      "engine": "SGLang",
+      "layers": 40,
+      "tp": 4,
+      "ep": 4,
+      "hardware": "4x DGX Spark"
+    },
+    "transfer": "cross-engine NIXL with KV layout/state conversion"
+  },
+  "effective_d": {
+    "speculative_algorithm": "DSPARK",
+    "speculative_dspark_block_size": 5,
+    "disable_cuda_graph": false,
+    "disable_overlap_schedule": false,
+    "max_running_requests": 12,
+    "tp_size": 4,
+    "ep_size": 4,
+    "chunked_prefill_size": 2048,
+    "disable_shared_experts_fusion": true,
+    "cuda_graph_config": {
+      "decode": {
+        "backend": "full",
+        "max_bs": 12,
+        "bs": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10,
+          12
+        ],
+        "tc_compiler": "eager",
+        "full_prefill_max_req": null,
+        "full_prefill_prefix_chunk_tokens": null,
+        "max_seq_len": null
+      },
+      "prefill": {
+        "backend": "disabled",
+        "max_bs": 2048,
+        "bs": [
+          4,
+          8,
+          12,
+          16,
+          20,
+          24,
+          28,
+          32,
+          48,
+          64,
+          80,
+          96,
+          112,
+          128,
+          144,
+          160,
+          176,
+          192,
+          208,
+          224,
+          240,
+          256,
+          288,
+          320,
+          352,
+          384,
+          416,
+          448,
+          480,
+          512,
+          576,
+          640,
+          704,
+          768,
+          832,
+          896,
+          960,
+          1024,
+          1280,
+          1536,
+          1792,
+          2048
+        ],
+        "tc_compiler": "eager",
+        "full_prefill_max_req": null,
+        "full_prefill_prefix_chunk_tokens": null,
+        "max_seq_len": null
+      }
+    },
+    "fp8_gemm_runner_backend": "flashinfer_cutlass"
+  },
+  "tail_tokens_configured": 256,
+  "tail_evidence": "evidence/tail-environment.json",
+  "validation": {
+    "final_correctness_checks": 4,
+    "final_matrix_cases": 10,
+    "final_matrix_requests": 55,
+    "final_matrix_max_input_tokens": 32768,
+    "final_golden_requests": 27,
+    "earlier_transport_cases": 24,
+    "earlier_transport_requests": 172,
+    "earlier_transport_max_input_tokens": 100000
+  },
+  "performance": {
+    "golden_c1_decode_tps": 72.83333333333333,
+    "golden_c8_end_to_end_aggregate_tps": 231.83333333333331,
+    "v7_speedup": null,
+    "reason": "No matched V7/V8 performance experiment"
+  },
+  "restore_scope": "Existing role images and external model/Engram data required; no new full-image export or cold-restore test",
+  "package_order": [
+    "packages/xyvllm-overlay-20260920.tgz",
+    "packages/xyvllm-dspark-compute-delta-20260920.tgz"
+  ],
+  "artifacts": [
+    {
+      "path": "packages/xyvllm-overlay-20260920.tgz",
+      "source": "hetero-v2/xyvllm-overlay-20260920.tgz",
+      "sha256": "b6a7b02407fb358bd1406106f0983e133c7b16f20894ed941fa8f8397fc56986",
+      "bytes": 72890,
+      "phase": "transport_before_dspark"
+    },
+    {
+      "path": "packages/xyvllm-dspark-compute-delta-20260920.tgz",
+      "source": "hetero-v2/xyvllm-dspark-compute-delta-20260920.tgz",
+      "sha256": "3c1757ac6e64d0c11c447fe602048c6671c50cb68cf8949cdcd1be597f2d8421",
+      "bytes": 45202,
+      "phase": "final_delta"
+    },
+    {
+      "path": "evidence/transport-report.md",
+      "source": "hetero-v2/xyvllm-results-20260920/REPORT.md",
+      "sha256": "4e4aa3cc01c63951a3fcc9d2f22fed72aff65d9bab560c5c8ece056b546b1b3d",
+      "bytes": 4993,
+      "phase": "transport_before_dspark"
+    },
+    {
+      "path": "evidence/final-report.md",
+      "source": "hetero-v2/xyvllm-dspark-20260920/REPORT.md",
+      "sha256": "d37a78998b668a5a4645af1427848a39c13c292eb3aa459e203f2ff2f61467ac",
+      "bytes": 6521,
+      "phase": "final"
+    },
+    {
+      "path": "evidence/effective.json",
+      "source": "hetero-v2/xyvllm-dspark-20260920/fast/results/effective.json",
+      "sha256": "88a2398ddb6175f5697832eea3e7d7b45ef594146a3fff23d8303be111986f7b",
+      "bytes": 1561,
+      "phase": "final"
+    },
+    {
+      "path": "evidence/summary.json",
+      "source": "hetero-v2/xyvllm-dspark-20260920/fast/results/summary.json",
+      "sha256": "8554377dcf326e484ceeb8701a4475f461f55fe9a30df7013f561abb5e1d5007",
+      "bytes": 6128,
+      "phase": "final"
+    },
+    {
+      "path": "evidence/golden-repro-summary.json",
+      "source": "hetero-v2/xyvllm-dspark-20260920/fast/golden-repro-summary.json",
+      "sha256": "0101329e558ee1c205cefcc23503a93a873141c14670eb227161fe8176ba9b90",
+      "bytes": 197,
+      "phase": "final"
+    },
+    {
+      "path": "evidence/final-health-d.json",
+      "source": "hetero-v2/xyvllm-dspark-20260920/final-health-d.json",
+      "sha256": "767ad2b12f5616e13d90fb543657eca616dbcd618e49288e989847ac647056fd",
+      "bytes": 1635,
+      "phase": "final"
+    },
+    {
+      "path": "evidence/final-health-p.json",
+      "source": "hetero-v2/xyvllm-dspark-20260920/final-health-p.json",
+      "sha256": "b158f0a1774d121ebcbcf422c4b111fcdaa9379257147f2bccac18d7f8b136c1",
+      "bytes": 206,
+      "phase": "final"
+    },
+    {
+      "path": "evidence/final-health-rank0.json",
+      "source": "hetero-v2/xyvllm-dspark-20260920/final-health-rank0.json",
+      "sha256": "4cdedd6fe253eb331224348c03b063fab5bde4fda5e4333d196e1bbeeddffc34",
+      "bytes": 538,
+      "phase": "final"
+    },
+    {
+      "path": "runtime.env",
+      "source": "hetero-v2/xyvllm-dspark-20260920/payload/runtime.env",
+      "sha256": "2f39d8cb3b14fc8bbb989f8fb39902dd6abff0e1bc6bbcf643d71b08bf57ab4c",
+      "bytes": 236,
+      "phase": "final"
+    },
+    {
+      "path": "patch/apply_xy_patch.py",
+      "source": "hetero-v2/xyvllm-patch/apply_xy_patch.py",
+      "sha256": "39bb27972639cb15fbe76936f070b8c48c542b181c5139a05aa5641a800d3409",
+      "bytes": 1680,
+      "phase": "final_source"
+    },
+    {
+      "path": "patch/decode.py",
+      "source": "hetero-v2/xyvllm-patch/decode.py",
+      "sha256": "c03b974e014fcf0f4c78d6010dcb70454fa6db6325162ed572e3bc865b5af0d6",
+      "bytes": 123031,
+      "phase": "final_source"
+    },
+    {
+      "path": "patch/deepseek_v4_hook.py",
+      "source": "hetero-v2/xyvllm-patch/deepseek_v4_hook.py",
+      "sha256": "7ab710168f7bf6b5bb780b0e9daf9ff686d313c81919fcf03ef7b4e6d2a7a040",
+      "bytes": 14253,
+      "phase": "final_source"
+    },
+    {
+      "path": "patch/manifest.add",
+      "source": "hetero-v2/xyvllm-patch/manifest.add",
+      "sha256": "7824309f5e20abd4ca3c3b83eadcc26b6258621c3bed99116ff554d7519ad1b3",
+      "bytes": 820,
+      "phase": "final_source"
+    },
+    {
+      "path": "patch/nixl/__init__.py",
+      "source": "hetero-v2/xyvllm-patch/nixl/__init__.py",
+      "sha256": "1520a5628f0e43aed9f824c81297431ffb824a695abf14b2bb27ef367e6ad690",
+      "bytes": 553,
+      "phase": "final_source"
+    },
+    {
+      "path": "patch/prefill.py",
+      "source": "hetero-v2/xyvllm-patch/prefill.py",
+      "sha256": "2827aca2a6a038b271b9938dda6ff7b7b6eaf32c82f38152aa84195bea9495ec",
+      "bytes": 58842,
+      "phase": "final_source"
+    },
+    {
+      "path": "patch/README.md",
+      "source": "hetero-v2/xyvllm-patch/README.md",
+      "sha256": "fb16a6b9457a568790c67495a1eb390f9a7a95b61fab4bad9c90a042fb1e90e5",
+      "bytes": 4364,
+      "phase": "final_source"
+    },
+    {
+      "path": "patch/utils.py",
+      "source": "hetero-v2/xyvllm-patch/utils.py",
+      "sha256": "88de0464aab5b26bb0d5280b2cba93cb52f9bf8ac6f139c7d1c828bb3e860b3c",
+      "bytes": 61380,
+      "phase": "final_source"
+    },
+    {
+      "path": "patch/xy_dump_meta.py",
+      "source": "hetero-v2/xyvllm-patch/xy_dump_meta.py",
+      "sha256": "9aa512fcc4f339e3bf6d9dd69814550f8f023f99ae66fe21dc6f39db99db814c",
+      "bytes": 1305,
+      "phase": "final_source"
+    },
+    {
+      "path": "patch/xy_pd_proxy.py",
+      "source": "hetero-v2/xyvllm-patch/xy_pd_proxy.py",
+      "sha256": "bf1ed65d6414deadbc286a062e387f75b7d5cbbd8c2f438817153b0311b5af8a",
+      "bytes": 21702,
+      "phase": "final_source"
+    },
+    {
+      "path": "patch/xy_proxy_up.sh",
+      "source": "hetero-v2/xyvllm-patch/xy_proxy_up.sh",
+      "sha256": "2bdf22e0031649c70f9788e2dd636fbacad92beca3a276bfbf86f3adf47bc7f9",
+      "bytes": 333,
+      "phase": "final_source"
+    },
+    {
+      "path": "patch/xyvllm/__init__.py",
+      "source": "hetero-v2/xyvllm-patch/xyvllm/__init__.py",
+      "sha256": "0d1d4ca139f092c256cbf0ee540b1fbe3640ea693868d0efcc91275ab03d4db5",
+      "bytes": 666,
+      "phase": "final_source"
+    },
+    {
+      "path": "patch/xyvllm/conn.py",
+      "source": "hetero-v2/xyvllm-patch/xyvllm/conn.py",
+      "sha256": "e08683801c475ada77887a39fe96408cf14d93667e5b49d8132cf5258bac2bb7",
+      "bytes": 25177,
+      "phase": "final_source"
+    },
+    {
+      "path": "patch/xyvllm/layout.py",
+      "source": "hetero-v2/xyvllm-patch/xyvllm/layout.py",
+      "sha256": "f807d54a520d4d7d61b5330f70b6f3e53434b6ed738ed27c13ead27dbb16a4c0",
+      "bytes": 5029,
+      "phase": "final_source"
+    },
+    {
+      "path": "patch/xyvllm/transfer.py",
+      "source": "hetero-v2/xyvllm-patch/xyvllm/transfer.py",
+      "sha256": "8dee4ee52c4f279eec191757254f179a28aa3c2ce0b4a905652f9fabb77f2472",
+      "bytes": 10606,
+      "phase": "final_source"
+    }
+  ]
+}

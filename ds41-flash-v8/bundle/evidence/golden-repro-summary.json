@@ -1,0 +1,12 @@
+[
+  {
+    "c": 1,
+    "per_stream_mean": 72.83333333333333,
+    "aggregate_mean": 64.8
+  },
+  {
+    "c": 8,
+    "per_stream_mean": 33.223333333333336,
+    "aggregate_mean": 231.83333333333331
+  }
+]

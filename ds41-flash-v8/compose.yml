@@ -1,0 +1,67 @@
+name: ds41-flash-v8
+
+# This file is a deployment template for the already built role images. It is
+# intentionally not a single-machine six-GPU simulator: D must be launched as
+# one rank on each of four GB10/Spark nodes with the same host network.
+services:
+  p:
+    image: ${P_IMAGE:-vllm-dsv41:prefill-b12x-v1}
+    profiles: [p]
+    network_mode: host
+    ipc: host
+    runtime: nvidia
+    environment:
+      CUDA_VISIBLE_DEVICES: ${P_CUDA_VISIBLE_DEVICES:-0,1}
+      MODEL_PATH: ${MODEL_PATH:-/models/DeepSeek-V4.1-Flash}
+      VLLM_TENSOR_PARALLEL_SIZE: "2"
+      VLLM_PP_LAYERS: "21"
+      KV_TRANSFER_CONFIG: ${KV_TRANSFER_CONFIG:-vllm_nixl_producer}
+    volumes:
+      - ${MODEL_DIR:-/srv/models/DeepSeek-V4.1-Flash}:/models/DeepSeek-V4.1-Flash:ro
+      - ${P_RUNTIME_DIR:-/var/tmp/dsv41-p21}:/var/tmp/dsv41-p21
+    command: >-
+      bash -lc "${P_COMMAND:-echo 'Set P_COMMAND to the validated P21 vLLM launcher'; sleep infinity}"
+
+  d:
+    image: ${D_IMAGE:-dsv41-sglang:20260913}
+    profiles: [d]
+    network_mode: host
+    ipc: host
+    runtime: nvidia
+    environment:
+      CUDA_VISIBLE_DEVICES: ${D_CUDA_VISIBLE_DEVICES:-0}
+      MODEL_PATH: ${MODEL_PATH:-/models/DeepSeek-V4.1-Flash}
+      D_NODE_RANK: ${D_NODE_RANK:?set D_NODE_RANK to 0,1,2,3 on the four Spark nodes}
+      D_MASTER_ADDR: ${D_MASTER_ADDR:?set the rank-0 Spark address}
+      D_MASTER_PORT: ${D_MASTER_PORT:-29542}
+      TP_SIZE: "4"
+      EP_SIZE: "4"
+      SPEC_ALGO: DSPARK
+      DSPARK_BLOCK_SIZE: "5"
+      CHUNKED_PREFILL_SIZE: "2048"
+      XY_PD_TAIL: "256"
+      EXTRA_SGLANG_ARGS: "--fp8-gemm-backend flashinfer_cutlass --disable-shared-experts-fusion --watchdog-timeout 1800 --enable-metrics --disaggregation-mode decode --disaggregation-transfer-backend nixl"
+    volumes:
+      - ${MODEL_DIR:-/srv/models/DeepSeek-V4.1-Flash}:/models/DeepSeek-V4.1-Flash:ro
+      - ${ENGRAM_DIR:-/srv/engram}:/var/tmp/engram:ro
+      - ${D_RUNTIME_DIR:-/var/tmp/dsv41-d40}:/var/tmp/dsv41-d40
+    command: >-
+      bash -lc "${D_COMMAND:-echo 'Set D_COMMAND to the validated D40 SGLang launcher'; sleep infinity}"
+
+  proxy:
+    image: ${V8_BUNDLE_IMAGE:-ghcr.io/soulmate-halo/heterogeneous-gpu-pd-lab/ds41-flash-v8:latest}
+    profiles: [proxy]
+    network_mode: host
+    environment:
+      P_URL: ${P_URL:-http://127.0.0.1:8000}
+      D_URL: ${D_URL:?set D_URL to the D40 SGLang endpoint}
+      PROXY_PORT: ${PROXY_PORT:-5701}
+    volumes:
+      - ${PROXY_RUNTIME_DIR:-/var/tmp/dsv41-p21}:/var/tmp/dsv41-p21
+    command: ["shell"]
+
+# Typical use:
+#   docker compose --profile p up -d p
+#   D_NODE_RANK=0 D_MASTER_ADDR=... docker compose --profile d run --rm d
+#   docker compose --profile proxy run --rm proxy
+# The role launchers must be supplied by the matching ARM64/GB10 images.

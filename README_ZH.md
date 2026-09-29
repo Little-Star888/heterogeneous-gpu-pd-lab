@@ -2,6 +2,21 @@
 
 [English](README.md)
 
+## DS4.1 Flash V8 Docker 镜像（PP2 / PD 分离）
+
+GHCR 镜像：`ghcr.io/soulmate-halo/heterogeneous-gpu-pd-lab/ds41-flash-v8:latest`。内含 V8 跨引擎补丁、DSpark 最终增量、运行环境和 SHA256 证据，不包含 510GB 权重或私有角色镜像。
+
+- **P 段：** 2 x RTX 6000D，vLLM TP2；可在完成验证后用 RTX 5500 Pro 或 RTX 6000 Pro 替代。
+- **D 段：** 4 台 DGX Spark/GB10，SGLang TP4/EP4，通过 NIXL 交接；总体是 PP2 的 PD 分离。
+
+[完整配置与应用步骤](ds41-flash-v8/README.md) · [Dockerfile](ds41-flash-v8/Dockerfile) · [Compose 配置](ds41-flash-v8/compose.yml)
+
+```bash
+docker pull ghcr.io/soulmate-halo/heterogeneous-gpu-pd-lab/ds41-flash-v8:latest
+docker run --rm ghcr.io/soulmate-halo/heterogeneous-gpu-pd-lab/ds41-flash-v8:latest show-config
+```
+
+
 ## 最新进展 · 2026-09-20 · DS4.1 Flash · V8 部署方案：Prefill 16000+ tok/s，C32 聚合解码 442.02 tok/s
 
 ### DeepSeek-V4.1-Flash（DS4.1 Flash）· V8：Prefill 稳定 16000+ tok/s，C32 聚合解码 442.02 tok/s

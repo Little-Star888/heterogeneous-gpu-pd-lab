@@ -1,0 +1,7 @@
+[
+  {
+    "node": "ysy101",
+    "ok": true,
+    "output": "P_AND_PROXY_HEALTH_PASS\n{\"vllm:num_requests_running\": 0.0, \"vllm:num_requests_waiting\": 0.0, \"vllm:kv_cache_usage_perc\": 0.0}\n"
+  }
+]

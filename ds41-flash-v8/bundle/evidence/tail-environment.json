@@ -1,0 +1,39 @@
+{
+  "source": "hetero-v2/xyvllm-results-20260920/config-audit-live.json",
+  "source_sha256": "2ddd03ccc81930f8067bd9833308644f31aca01c3a314edf3e645b7fa4ff2f61",
+  "phase": "before_dspark; tail unchanged by final runtime.env",
+  "nodes": [
+    {
+      "node": "ysy37",
+      "environment": {
+        "MAX_RUNNING_REQUESTS": "12",
+        "CHUNKED_PREFILL_SIZE": "2048",
+        "XY_PD_TAIL": "256"
+      }
+    },
+    {
+      "node": "ysy38",
+      "environment": {
+        "CHUNKED_PREFILL_SIZE": "2048",
+        "XY_PD_TAIL": "256",
+        "MAX_RUNNING_REQUESTS": "12"
+      }
+    },
+    {
+      "node": "ysy39",
+      "environment": {
+        "CHUNKED_PREFILL_SIZE": "2048",
+        "MAX_RUNNING_REQUESTS": "12",
+        "XY_PD_TAIL": "256"
+      }
+    },
+    {
+      "node": "ysy40",
+      "environment": {
+        "XY_PD_TAIL": "256",
+        "CHUNKED_PREFILL_SIZE": "2048",
+        "MAX_RUNNING_REQUESTS": "12"
+      }
+    }
+  ]
+}

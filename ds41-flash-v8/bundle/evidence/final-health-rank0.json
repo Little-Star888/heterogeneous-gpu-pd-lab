@@ -1,0 +1,7 @@
+[
+  {
+    "node": "ysy37",
+    "ok": true,
+    "output": "{\"speculative_algorithm\": \"DSPARK\", \"speculative_dspark_block_size\": 5, \"disable_cuda_graph\": false, \"disable_overlap_schedule\": false, \"fp8_gemm_runner_backend\": \"flashinfer_cutlass\", \"disable_shared_experts_fusion\": true, \"max_running_requests\": 12, \"tp_size\": 4, \"ep_size\": 4}\n{\"sglang:num_running_reqs\": 0.0, \"sglang:num_queue_reqs\": 0.0, \"sglang:num_decode_prealloc_queue_reqs\": 0.0, \"sglang:num_decode_transfer_queue_reqs\": 0.0}\n"
+  }
+]

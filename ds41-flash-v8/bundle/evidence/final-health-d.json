@@ -1,0 +1,22 @@
+[
+  {
+    "node": "ysy37",
+    "ok": true,
+    "output": "CONTAINER_RUNNING\nc03b974e014fcf0f4c78d6010dcb70454fa6db6325162ed572e3bc865b5af0d6  /var/tmp/dsv41-d40/overlay/decode.py\n69750216841230c9d1ecab5c073fbfe917be320dce12462e2e4984436dc98f97  /var/tmp/dsv41-d40/overlay/utils.py\n7ab710168f7bf6b5bb780b0e9daf9ff686d313c81919fcf03ef7b4e6d2a7a040  /var/tmp/dsv41-d40/overlay/deepseek_v4_hook.py\n"
+  },
+  {
+    "node": "ysy38",
+    "ok": true,
+    "output": "CONTAINER_RUNNING\nc03b974e014fcf0f4c78d6010dcb70454fa6db6325162ed572e3bc865b5af0d6  /var/tmp/dsv41-d40/overlay/decode.py\n69750216841230c9d1ecab5c073fbfe917be320dce12462e2e4984436dc98f97  /var/tmp/dsv41-d40/overlay/utils.py\n7ab710168f7bf6b5bb780b0e9daf9ff686d313c81919fcf03ef7b4e6d2a7a040  /var/tmp/dsv41-d40/overlay/deepseek_v4_hook.py\n"
+  },
+  {
+    "node": "ysy39",
+    "ok": true,
+    "output": "CONTAINER_RUNNING\nc03b974e014fcf0f4c78d6010dcb70454fa6db6325162ed572e3bc865b5af0d6  /var/tmp/dsv41-d40/overlay/decode.py\n69750216841230c9d1ecab5c073fbfe917be320dce12462e2e4984436dc98f97  /var/tmp/dsv41-d40/overlay/utils.py\n7ab710168f7bf6b5bb780b0e9daf9ff686d313c81919fcf03ef7b4e6d2a7a040  /var/tmp/dsv41-d40/overlay/deepseek_v4_hook.py\n"
+  },
+  {
+    "node": "ysy40",
+    "ok": true,
+    "output": "CONTAINER_RUNNING\nc03b974e014fcf0f4c78d6010dcb70454fa6db6325162ed572e3bc865b5af0d6  /var/tmp/dsv41-d40/overlay/decode.py\n69750216841230c9d1ecab5c073fbfe917be320dce12462e2e4984436dc98f97  /var/tmp/dsv41-d40/overlay/utils.py\n7ab710168f7bf6b5bb780b0e9daf9ff686d313c81919fcf03ef7b4e6d2a7a040  /var/tmp/dsv41-d40/overlay/deepseek_v4_hook.py\n"
+  }
+]
