@@ -1,1 +1,2 @@
-# Frozenbundle files are verified byte-for-byte.\nbundle/** -text\n
+# Frozen bundle files are verified byte-for-byte.
+bundle/** -text
