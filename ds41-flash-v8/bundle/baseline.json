@@ -149,22 +149,22 @@
     {
       "path": "evidence/transport-report.md",
       "source": "hetero-v2/xyvllm-results-20260920/REPORT.md",
-      "sha256": "4e4aa3cc01c63951a3fcc9d2f22fed72aff65d9bab560c5c8ece056b546b1b3d",
-      "bytes": 4993,
+      "sha256": "1a17341a75f52c2c8ec17c4ae8fa9a6f64c4ba27970a637f0e1e9a048b439a36",
+      "bytes": 4926,
       "phase": "transport_before_dspark"
     },
     {
       "path": "evidence/final-report.md",
       "source": "hetero-v2/xyvllm-dspark-20260920/REPORT.md",
-      "sha256": "d37a78998b668a5a4645af1427848a39c13c292eb3aa459e203f2ff2f61467ac",
-      "bytes": 6521,
+      "sha256": "0955f2ef3f7d47294b0042860fed515a3b2a297c3a68a500ca0eac5d75792b34",
+      "bytes": 6439,
       "phase": "final"
     },
     {
       "path": "evidence/effective.json",
       "source": "hetero-v2/xyvllm-dspark-20260920/fast/results/effective.json",
-      "sha256": "88a2398ddb6175f5697832eea3e7d7b45ef594146a3fff23d8303be111986f7b",
-      "bytes": 1561,
+      "sha256": "64f797304a4ed511e257f5da01ee4a351382030d1cd766e2bf3d7828c0a3a1ad",
+      "bytes": 1476,
       "phase": "final"
     },
     {
@@ -184,22 +184,22 @@
     {
       "path": "evidence/final-health-d.json",
       "source": "hetero-v2/xyvllm-dspark-20260920/final-health-d.json",
-      "sha256": "767ad2b12f5616e13d90fb543657eca616dbcd618e49288e989847ac647056fd",
-      "bytes": 1635,
+      "sha256": "ac6384eb14f3e18c685e89ed3686e4da4229a09afcf1fbd66e340f4ac0394bc1",
+      "bytes": 1614,
       "phase": "final"
     },
     {
       "path": "evidence/final-health-p.json",
       "source": "hetero-v2/xyvllm-dspark-20260920/final-health-p.json",
-      "sha256": "b158f0a1774d121ebcbcf422c4b111fcdaa9379257147f2bccac18d7f8b136c1",
-      "bytes": 206,
+      "sha256": "484bf0c2bbe8119c7da095cf429432d08a0dd9983cb0fbb0ed27d4199b45a7fe",
+      "bytes": 200,
       "phase": "final"
     },
     {
       "path": "evidence/final-health-rank0.json",
       "source": "hetero-v2/xyvllm-dspark-20260920/final-health-rank0.json",
-      "sha256": "4cdedd6fe253eb331224348c03b063fab5bde4fda5e4333d196e1bbeeddffc34",
-      "bytes": 538,
+      "sha256": "7c2c645f39c1824ec240d301e2f4a22393cdc243057cbcb43960f3647a45290c",
+      "bytes": 532,
       "phase": "final"
     },
     {
@@ -247,8 +247,8 @@
     {
       "path": "patch/prefill.py",
       "source": "hetero-v2/xyvllm-patch/prefill.py",
-      "sha256": "2827aca2a6a038b271b9938dda6ff7b7b6eaf32c82f38152aa84195bea9495ec",
-      "bytes": 58842,
+      "sha256": "7293928c4453e5ef6ab3c61401ed6d9aee0ccbdafb6ef5de0eeb34db93f51731",
+      "bytes": 57473,
       "phase": "final_source"
     },
     {
